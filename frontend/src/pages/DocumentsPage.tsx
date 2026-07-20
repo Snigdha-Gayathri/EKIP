@@ -9,13 +9,8 @@ import {
   Database,
   X,
   Copy,
-  ExternalLink,
-  Layers,
   Sparkles,
-  Search,
   Network,
-  Cpu,
-  Shield,
   ArrowRight,
 } from 'lucide-react';
 import { documentService } from '../services/documentService';

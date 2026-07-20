@@ -16,9 +16,7 @@ import {
   Clock,
   ExternalLink,
   Zap,
-  ShieldAlert,
   ShieldCheck,
-  Play,
   Copy,
 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
