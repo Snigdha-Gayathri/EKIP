@@ -7,6 +7,7 @@ Reasoning, and Report agents.
 
 from __future__ import annotations
 
+from typing import Any
 from langgraph.graph import END, START, StateGraph
 
 from app.agents.knowledge_graph.agent import kg_agent_node
@@ -15,6 +16,8 @@ from app.agents.report.agent import report_node
 from app.agents.search.agent import search_agent_node
 from app.agents.state import EKIPState
 from app.agents.supervisor.agent import route_from_supervisor, supervisor_node
+
+_ekip_graph: Any = None
 
 
 def build_ekip_graph() -> Any:
@@ -55,3 +58,11 @@ def build_ekip_graph() -> Any:
     graph.add_edge("report", END)
 
     return graph.compile()
+
+
+def get_ekip_graph() -> Any:
+    """Get or initialize the compiled EKIP multi-agent LangGraph StateGraph singleton."""
+    global _ekip_graph
+    if _ekip_graph is None:
+        _ekip_graph = build_ekip_graph()
+    return _ekip_graph

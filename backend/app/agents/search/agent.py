@@ -30,19 +30,9 @@ async def search_agent_node(state: EKIPState) -> dict[str, Any]:
     logger.info("Search Agent executing for query: %s", query[:100])
 
     try:
-        from app.db.qdrant import get_qdrant_client_sync
-        from app.llm.embeddings import get_embedding_service
-        from app.agents.search.retriever import HybridRetriever
-        from app.core.config import settings
+        from app.agents.search.retriever import get_retriever
 
-        # Initialize retriever
-        qdrant_client = get_qdrant_client_sync()
-        embedding_service = get_embedding_service()
-        retriever = HybridRetriever(
-            qdrant_client=qdrant_client,
-            embedding_service=embedding_service,
-            collection_name=settings.QDRANT_COLLECTION_DOCUMENTS,
-        )
+        retriever = get_retriever()
 
         # Execute hybrid search
         search_results = await retriever.search(

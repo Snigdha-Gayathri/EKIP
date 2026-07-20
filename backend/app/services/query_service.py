@@ -6,7 +6,7 @@ from __future__ import annotations
 
 import logging
 from typing import Any
-from app.agents.graph import build_ekip_graph
+from app.agents.graph import get_ekip_graph
 from app.schemas.query import QueryRequest, QueryResponse, SourceCitationModel, AgentStepModel
 
 logger = logging.getLogger(__name__)
@@ -16,7 +16,13 @@ class QueryService:
     """Service layer executing the EKIP multi-agent graph."""
 
     def __init__(self):
-        self.graph = build_ekip_graph()
+        self._graph: Any = None
+
+    @property
+    def graph(self) -> Any:
+        if self._graph is None:
+            self._graph = get_ekip_graph()
+        return self._graph
 
     async def execute_query(self, req: QueryRequest, org_id: str = "acme_ai") -> QueryResponse:
         logger.info("Executing multi-agent query: %s for org: %s", req.query, org_id)

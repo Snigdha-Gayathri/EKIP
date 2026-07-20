@@ -16,6 +16,24 @@ from app.agents.state import SearchResult
 
 logger = logging.getLogger(__name__)
 
+_hybrid_retriever: HybridRetriever | None = None
+
+
+def get_retriever() -> HybridRetriever:
+    """Get or initialize the HybridRetriever singleton."""
+    global _hybrid_retriever
+    if _hybrid_retriever is None:
+        from app.db.qdrant import get_qdrant_client_sync
+        from app.llm.embeddings import get_embedding_service
+        from app.core.config import settings
+
+        _hybrid_retriever = HybridRetriever(
+            qdrant_client=get_qdrant_client_sync(),
+            embedding_service=get_embedding_service(),
+            collection_name=settings.QDRANT_COLLECTION_DOCUMENTS,
+        )
+    return _hybrid_retriever
+
 
 class HybridRetriever:
     """
@@ -207,20 +225,17 @@ class HybridRetriever:
     async def _generate_sparse_vector(self, text: str) -> Any | None:
         """Generate a sparse (BM25) vector for the given text."""
         try:
-            # Use fastembed for sparse vectors if available
-            from fastembed import SparseTextEmbedding
+            from app.llm.embeddings import get_sparse_embedding_model
 
-            model = SparseTextEmbedding(model_name="Qdrant/bm25")
-            embeddings = list(model.embed([text]))
-            if embeddings:
-                sparse = embeddings[0]
-                return qdrant_models.SparseVector(
-                    indices=sparse.indices.tolist(),
-                    values=sparse.values.tolist(),
-                )
-            return None
-        except ImportError:
-            logger.info("fastembed not available, skipping sparse vectors")
+            model = get_sparse_embedding_model()
+            if model:
+                embeddings = list(model.embed([text]))
+                if embeddings:
+                    sparse = embeddings[0]
+                    return qdrant_models.SparseVector(
+                        indices=sparse.indices.tolist(),
+                        values=sparse.values.tolist(),
+                    )
             return None
         except Exception as e:
             logger.warning("Sparse embedding failed: %s", e)

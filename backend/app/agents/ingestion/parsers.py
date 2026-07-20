@@ -23,6 +23,8 @@ def parse_document(file_content: bytes, file_type: str, filename: str) -> str:
         return _parse_pdf(file_content)
     elif file_type == "docx":
         return _parse_docx(file_content)
+    elif file_type == "pptx":
+        return _parse_pptx(file_content)
     elif file_type == "html":
         return _parse_html(file_content)
     elif file_type == "csv":
@@ -33,18 +35,64 @@ def parse_document(file_content: bytes, file_type: str, filename: str) -> str:
 
 
 def _parse_pdf(content: bytes) -> str:
-    reader = pypdf.PdfReader(io.BytesIO(content))
-    pages = []
-    for idx, page in enumerate(reader.pages):
-        text = page.extract_text()
-        if text:
-            pages.append(f"--- Page {idx+1} ---\n{text}")
-    return "\n\n".join(pages)
+    try:
+        reader = pypdf.PdfReader(io.BytesIO(content))
+        pages = []
+        for idx, page in enumerate(reader.pages):
+            text = page.extract_text()
+            if text:
+                pages.append(f"--- Page {idx+1} ---\n{text}")
+        if pages:
+            return "\n\n".join(pages)
+    except Exception as e:
+        logger.warning("pypdf extraction failed (%s), trying unstructured fallback", e)
+    try:
+        from unstructured.partition.pdf import partition_pdf
+        elements = partition_pdf(file=io.BytesIO(content))
+        return "\n".join(str(el) for el in elements)
+    except Exception as e:
+        logger.warning("PDF unstructured fallback failed: %s", e)
+        return ""
 
 
 def _parse_docx(content: bytes) -> str:
-    doc = docx.Document(io.BytesIO(content))
-    return "\n".join(paragraph.text for paragraph in doc.paragraphs if paragraph.text)
+    try:
+        doc = docx.Document(io.BytesIO(content))
+        return "\n".join(paragraph.text for paragraph in doc.paragraphs if paragraph.text)
+    except Exception as e:
+        logger.warning("docx extraction failed (%s), trying unstructured fallback", e)
+    try:
+        from unstructured.partition.docx import partition_docx
+        elements = partition_docx(file=io.BytesIO(content))
+        return "\n".join(str(el) for el in elements)
+    except Exception as e:
+        logger.warning("DOCX unstructured fallback failed: %s", e)
+        return ""
+
+
+def _parse_pptx(content: bytes) -> str:
+    try:
+        import pptx
+        prs = pptx.Presentation(io.BytesIO(content))
+        text_runs = []
+        for idx, slide in enumerate(prs.slides):
+            slide_text = []
+            for shape in slide.shapes:
+                if hasattr(shape, "text") and shape.text:
+                    slide_text.append(shape.text)
+            if slide_text:
+                text_runs.append(f"--- Slide {idx+1} ---\n" + "\n".join(slide_text))
+        if text_runs:
+            return "\n\n".join(text_runs)
+    except Exception as e:
+        logger.warning("python-pptx extraction failed (%s), trying unstructured fallback", e)
+    try:
+        from unstructured.partition.pptx import partition_pptx
+        elements = partition_pptx(file=io.BytesIO(content))
+        return "\n".join(str(el) for el in elements)
+    except Exception as e:
+        logger.warning("PPTX unstructured fallback failed: %s", e)
+        return ""
 
 
 def _parse_html(content: bytes) -> str:

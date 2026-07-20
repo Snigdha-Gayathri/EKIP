@@ -5,11 +5,7 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 from fastapi import UploadFile
-from app.agents.ingestion.agent import IngestionAgent
-from app.db.qdrant import get_qdrant_client_sync
-from app.db.neo4j import get_neo4j_driver_sync
-from app.llm.embeddings import get_embedding_service
-from app.llm.factory import LLMFactory
+from app.agents.ingestion.agent import get_ingestion_agent
 from app.schemas.document import DocumentUploadResponse
 
 
@@ -24,12 +20,7 @@ class DocumentService:
         file_name = file.filename or "untitled.txt"
         file_type = file_name.split(".")[-1] if "." in file_name else "txt"
 
-        agent = IngestionAgent(
-            qdrant_client=get_qdrant_client_sync(),
-            neo4j_driver=get_neo4j_driver_sync(),
-            embedding_service=get_embedding_service(),
-            llm_provider=LLMFactory.create_default(),
-        )
+        agent = get_ingestion_agent()
 
         res = await agent.ingest_document(
             document_id=doc_id,

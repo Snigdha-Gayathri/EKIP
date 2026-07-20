@@ -1,0 +1,13 @@
+Acme AI Enterprise Knowledge Base - Sample Text Document
+
+Overview
+Acme AI operates a distributed microservices platform designed for enterprise knowledge management and intelligent routing. The core infrastructure relies on zero-trust authentication, hybrid semantic indexing, and multi-agent reasoning workflows.
+
+Architecture Summary
+- API Gateway: Routes requests, enforces rate limits, and validates bearer tokens.
+- Authentication Service: Handles OAuth2/OIDC login flows and issues JWT tokens.
+- Payments Service: Manages enterprise billing and subscription charges.
+- Storage Service: Persists document metadata and interfaces with Qdrant and Neo4j databases.
+
+Key Policies
+All services must communicate over mTLS in production. Any deployment exceeding 512 MB memory footprint must implement lazy loading for ML models and singleton pooling for external client connections.

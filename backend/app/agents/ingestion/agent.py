@@ -19,6 +19,8 @@ from app.agents.ingestion.parsers import chunk_text, parse_document
 
 logger = logging.getLogger(__name__)
 
+_ingestion_agent: IngestionAgent | None = None
+
 ENTITY_EXTRACTION_PROMPT = """Extract enterprise entities mentioned in this document chunk.
 Return a JSON object:
 {{
@@ -136,3 +138,21 @@ class IngestionAgent:
             "chunk_count": len(chunks),
             "entities_found": entities_found,
         }
+
+
+def get_ingestion_agent() -> IngestionAgent:
+    """Get or initialize the IngestionAgent singleton."""
+    global _ingestion_agent
+    if _ingestion_agent is None:
+        from app.db.qdrant import get_qdrant_client_sync
+        from app.db.neo4j import get_neo4j_driver_sync
+        from app.llm.embeddings import get_embedding_service
+        from app.llm.factory import LLMFactory
+
+        _ingestion_agent = IngestionAgent(
+            qdrant_client=get_qdrant_client_sync(),
+            neo4j_driver=get_neo4j_driver_sync(),
+            embedding_service=get_embedding_service(),
+            llm_provider=LLMFactory.create_default(),
+        )
+    return _ingestion_agent

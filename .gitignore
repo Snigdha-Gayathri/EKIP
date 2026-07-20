@@ -60,6 +60,25 @@ docker-compose.override.yml
 uploads/
 *.pdf
 *.docx
+*.pptx
+
+# ---- Databases & Vector Stores ----
+backend/data/qdrant/
+backend/data/ekip_graph.json
+*.index
+*.db
+*.sqlite
+*.sqlite3
+qdrant_storage/
+neo4j_data/
+vector_stores/
+.fastembed/
+.fastembed_cache/
+
+# ---- Demo Seeds Exceptions ----
+!backend/seeds/demo/sample.pdf
+!backend/seeds/demo/sample.docx
+!backend/seeds/demo/sample.pptx
 
 # ---- Coverage ----
 htmlcov/
