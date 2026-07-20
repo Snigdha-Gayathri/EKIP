@@ -1,0 +1,41 @@
+{
+  "organization": "AcmeAI Technologies",
+  "documents": [
+    {
+      "id": "doc_eng_001",
+      "title": "Auth Service Architecture & API Specification v3.2",
+      "category": "engineering",
+      "doc_type": "md",
+      "tags": ["authentication", "oauth2", "jwt", "security", "identity"],
+      "author": "Elena Vance (Principal Identity Architect)",
+      "content": "# Authentication Service Architecture & API Specification v3.2\n\n## 1. Overview\nThe Authentication Service (`auth-svc`) is the authoritative identity provider for all internal and external AcmeAI applications. It implements OAuth 2.0 / OpenID Connect (OIDC) with mutual TLS (mTLS) between internal services and short-lived RSA-signed JWT tokens.\n\n## 2. Ownership & SLA\n- **Owning Team**: Identity & Access Management (IAM) Team\n- **Lead Engineer**: Elena Vance (`elena.vance@acme.ai`)\n- **On-Call Slack**: `#help-auth-svc`\n- **Production SLA**: 99.99% availability\n\n## 3. Dependent Services\n- **Payments Service (`payment-svc`)**: Requires internal OAuth token exchange for billing ledger authorization.\n- **API Gateway (`gateway-svc`)**: Performs JWT verification at the edge via Redis JWKS caching.\n- **Customer Portal (`portal-web`)**: Uses OIDC Authorization Code Flow with PKCE.\n\n## 4. Exposed APIs\n- `POST /api/v1/auth/token`: Exchanges credentials or refresh token for JWT pair.\n- `POST /api/v1/auth/verify`: Validates token claims and permissions.\n- `GET /.well-known/jwks.json`: Public RSA verification keys.\n\n## 5. Known Failure Modes\nRefer to Support Ticket #INC-8834 regarding Redis session cache saturation during high-throughput burst events."
+    },
+    {
+      "id": "doc_eng_002",
+      "title": "Payments & Billing Platform Implementation Guide",
+      "category": "engineering",
+      "doc_type": "md",
+      "tags": ["payments", "billing", "stripe", "ledger"],
+      "author": "Marcus Chen (Staff Payments Engineer)",
+      "content": "# Payments & Billing Platform (`payment-svc`) Implementation Guide\n\n## 1. Architecture\nThe Payments Service handles subscription billing, usage metering, and invoice generation. It integrates directly with Stripe Enterprise and Stripe Tax.\n\n## 2. Dependencies\n- **Authentication Service (`auth-svc`)**: Every charge request must authenticate using a verified service token.\n- **PostgreSQL Billing DB**: Highly durable ACID ledger cluster.\n\n## 3. APIs Exposed\n- `POST /api/v1/payments/charge`: Execute debit against customer billing method.\n- `GET /api/v1/payments/invoices/{customer_id}`: List invoice history.\n\n## 4. Runbook & Deployment\nDeployments must run via ArgoCD blue/green pipelines (`deploy-payment-pipeline`)."
+    },
+    {
+      "id": "doc_sec_001",
+      "title": "Enterprise Zero-Trust Security & mTLS Standard",
+      "category": "security",
+      "doc_type": "md",
+      "tags": ["zero-trust", "mtls", "security", "compliance"],
+      "author": "Sarah Jenkins (CISO Office)",
+      "content": "# Zero-Trust Service-to-Service Communication Policy\n\nAll internal communication across AcmeAI Kubernetes clusters must enforce strict mTLS via Istio Service Mesh. Unauthenticated cleartext HTTP traffic is automatically dropped by edge sidecars."
+    },
+    {
+      "id": "doc_sup_001",
+      "title": "Incident Review #INC-8834: Authentication Failures During Flash Sale",
+      "category": "support",
+      "doc_type": "md",
+      "tags": ["incident", "postmortem", "auth-svc", "redis"],
+      "author": "DevOps Incident Commander",
+      "content": "# Incident Postmortem #INC-8834\n\n## Summary\nDuring the Q3 promotional flash sale, `auth-svc` experienced elevated 504 Gateway Timeout errors due to Redis connection pool exhaustion.\n\n## Root Cause & Action Items\nRedis connection pool limit was hardcoded to 50 connections. Upgraded `auth-svc` v3.2 to use dynamic pool sizing up to 500 connections."
+    }
+  ]
+}

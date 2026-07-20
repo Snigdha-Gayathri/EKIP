@@ -1,0 +1,1124 @@
+{
+  "nodes": {
+    "Platform Team": {
+      "name": "Platform Team",
+      "department": "Engineering",
+      "id": "Platform Team",
+      "_label": "Team"
+    },
+    "Backend Team": {
+      "name": "Backend Team",
+      "department": "Engineering",
+      "id": "Backend Team",
+      "_label": "Team"
+    },
+    "Data Team": {
+      "name": "Data Team",
+      "department": "Engineering & Analytics",
+      "id": "Data Team",
+      "_label": "Team"
+    },
+    "ML/AI Team": {
+      "name": "ML/AI Team",
+      "department": "Engineering & AI",
+      "id": "ML/AI Team",
+      "_label": "Team"
+    },
+    "Cloud Infrastructure & Security Team": {
+      "name": "Cloud Infrastructure & Security Team",
+      "department": "Security & DevOps",
+      "id": "Cloud Infrastructure & Security Team",
+      "_label": "Team"
+    },
+    "Payments Engineering Team": {
+      "name": "Payments Engineering Team",
+      "department": "Engineering",
+      "id": "Payments Engineering Team",
+      "_label": "Team"
+    },
+    "Identity & Access Management Team": {
+      "name": "Identity & Access Management Team",
+      "department": "Engineering",
+      "id": "Identity & Access Management Team",
+      "_label": "Team"
+    },
+    "James Liu": {
+      "name": "James Liu",
+      "email": "james.liu@acmeai.com",
+      "role": "Platform Lead",
+      "id": "James Liu",
+      "_label": "Person"
+    },
+    "Aisha Johnson": {
+      "name": "Aisha Johnson",
+      "email": "aisha.johnson@acmeai.com",
+      "role": "Backend Team Lead",
+      "id": "Aisha Johnson",
+      "_label": "Person"
+    },
+    "Fatima Al-Rashidi": {
+      "name": "Fatima Al-Rashidi",
+      "email": "fatima.al-rashidi@acmeai.com",
+      "role": "Data Engineering Lead",
+      "id": "Fatima Al-Rashidi",
+      "_label": "Employee"
+    },
+    "Dr. Wei Zhang": {
+      "name": "Dr. Wei Zhang",
+      "email": "wei.zhang@acmeai.com",
+      "role": "ML Platform Lead",
+      "id": "Dr. Wei Zhang",
+      "_label": "Employee"
+    },
+    "Samantha Park": {
+      "name": "Samantha Park",
+      "email": "samantha.park@acmeai.com",
+      "role": "Security Team Lead",
+      "id": "Samantha Park",
+      "_label": "Person"
+    },
+    "Nikolai Petrov": {
+      "name": "Nikolai Petrov",
+      "email": "nikolai.petrov@acmeai.com",
+      "role": "DevOps Lead",
+      "id": "Nikolai Petrov",
+      "_label": "Employee"
+    },
+    "Elena Vance": {
+      "name": "Elena Vance",
+      "email": "elena.vance@acmeai.com",
+      "role": "Principal Identity Architect",
+      "id": "Elena Vance",
+      "_label": "Employee"
+    },
+    "Marcus Chen": {
+      "name": "Marcus Chen",
+      "email": "marcus.chen@acmeai.com",
+      "role": "Staff Payments Engineer",
+      "id": "Marcus Chen",
+      "_label": "Employee"
+    },
+    "api-gateway": {
+      "name": "api-gateway",
+      "id": "api-gateway",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "auth-svc": {
+      "name": "auth-service",
+      "id": "auth-svc",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "user-svc": {
+      "name": "user-service",
+      "id": "user-svc",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "ml-inference-service": {
+      "name": "ml-inference-service",
+      "id": "ml-inference-service",
+      "tier": "Tier-1",
+      "language": "Python",
+      "_label": "Service"
+    },
+    "data-pipeline-service": {
+      "name": "data-pipeline-service",
+      "id": "data-pipeline-service",
+      "tier": "Tier-2",
+      "language": "Python",
+      "_label": "Service"
+    },
+    "payments-svc": {
+      "name": "Payments Service",
+      "id": "payments-svc",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "config-service": {
+      "name": "config-service",
+      "id": "config-service",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "audit-service": {
+      "name": "audit-service",
+      "id": "audit-service",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "notification-service": {
+      "name": "notification-service",
+      "id": "notification-service",
+      "tier": "Tier-2",
+      "language": "TypeScript",
+      "_label": "Service"
+    },
+    "storage-service": {
+      "name": "storage-service",
+      "id": "storage-service",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "search-service": {
+      "name": "search-service",
+      "id": "search-service",
+      "tier": "Tier-1",
+      "language": "Python",
+      "_label": "Service"
+    },
+    "billing-service": {
+      "name": "billing-service",
+      "id": "billing-service",
+      "tier": "Tier-1",
+      "language": "Go",
+      "_label": "Service"
+    },
+    "analytics-service": {
+      "name": "analytics-service",
+      "id": "analytics-service",
+      "tier": "Tier-2",
+      "language": "Python",
+      "_label": "Service"
+    },
+    "auth-service": {
+      "name": "auth-service",
+      "id": "auth-service",
+      "_label": "Service"
+    },
+    "user-service": {
+      "name": "user-service",
+      "id": "user-service",
+      "_label": "Service"
+    },
+    "Payments Service": {
+      "name": "Payments Service",
+      "id": "Payments Service",
+      "_label": "Service"
+    },
+    "POST /v2/auth/login": {
+      "name": "POST /v2/auth/login",
+      "method": "POST",
+      "path": "/v2/auth/login",
+      "version": "v2",
+      "id": "POST /v2/auth/login",
+      "_label": "API"
+    },
+    "POST /v2/auth/oauth/token": {
+      "name": "POST /v2/auth/oauth/token",
+      "method": "POST",
+      "path": "/v2/auth/oauth/token",
+      "version": "v2",
+      "id": "POST /v2/auth/oauth/token",
+      "_label": "API"
+    },
+    "GET /v2/auth/me": {
+      "name": "GET /v2/auth/me",
+      "method": "GET",
+      "path": "/v2/auth/me",
+      "version": "v2",
+      "id": "GET /v2/auth/me",
+      "_label": "API"
+    },
+    "GET /v1/users/search": {
+      "name": "GET /v1/users/search",
+      "method": "GET",
+      "path": "/v1/users/search",
+      "version": "v1",
+      "id": "GET /v1/users/search",
+      "_label": "API"
+    },
+    "POST /v1/organizations": {
+      "name": "POST /v1/organizations",
+      "method": "POST",
+      "path": "/v1/organizations",
+      "version": "v1",
+      "id": "POST /v1/organizations",
+      "_label": "API"
+    },
+    "POST /v1/predict": {
+      "name": "POST /v1/predict",
+      "method": "POST",
+      "path": "/v1/predict",
+      "version": "v1",
+      "id": "POST /v1/predict",
+      "_label": "API"
+    },
+    "POST /v1/predict/batch": {
+      "name": "POST /v1/predict/batch",
+      "method": "POST",
+      "path": "/v1/predict/batch",
+      "version": "v1",
+      "id": "POST /v1/predict/batch",
+      "_label": "API"
+    },
+    "POST /api/v1/payments/charge": {
+      "name": "POST /api/v1/payments/charge",
+      "method": "POST",
+      "path": "/api/v1/payments/charge",
+      "version": "v1",
+      "id": "POST /api/v1/payments/charge",
+      "_label": "API"
+    },
+    "ALL /v1/*": {
+      "name": "ALL /v1/*",
+      "method": "ALL",
+      "path": "/v1/*",
+      "version": "v1",
+      "id": "ALL /v1/*",
+      "_label": "API"
+    },
+    "auth-service-prod-deploy": {
+      "name": "auth-service-prod-deploy",
+      "environment": "Production",
+      "version": "v2.3.1",
+      "deployed_at": "2025-06-15",
+      "status": "Healthy",
+      "pipeline": "deploy-auth-svc",
+      "id": "auth-service-prod-deploy",
+      "_label": "Deployment"
+    },
+    "user-service-prod-deploy": {
+      "name": "user-service-prod-deploy",
+      "environment": "Production",
+      "version": "v1.8.2",
+      "deployed_at": "2025-06-10",
+      "status": "Healthy",
+      "pipeline": "deploy-user-svc",
+      "id": "user-service-prod-deploy",
+      "_label": "Deployment"
+    },
+    "ml-inference-prod-gpu": {
+      "name": "ml-inference-prod-gpu",
+      "environment": "Production",
+      "version": "v3.1.0",
+      "deployed_at": "2025-06-01",
+      "status": "Healthy",
+      "pipeline": "deploy-ml-inference",
+      "id": "ml-inference-prod-gpu",
+      "_label": "Deployment"
+    },
+    "api-gateway-envoy-v4": {
+      "name": "api-gateway-envoy-v4",
+      "environment": "Production",
+      "version": "v4.0.2",
+      "deployed_at": "2025-06-18",
+      "status": "Healthy",
+      "pipeline": "deploy-api-gateway",
+      "id": "api-gateway-envoy-v4",
+      "_label": "Deployment"
+    },
+    "Stripe Ledger Pipeline": {
+      "name": "Stripe Ledger Pipeline",
+      "environment": "Production",
+      "version": "v1.4.0",
+      "deployed_at": "2025-05-12",
+      "status": "Healthy",
+      "pipeline": "deploy-payment-pipeline",
+      "id": "Stripe Ledger Pipeline",
+      "_label": "Deployment"
+    },
+    "POL-ZT-001": {
+      "name": "Enterprise Zero-Trust Security & mTLS Standard",
+      "id": "POL-ZT-001",
+      "_label": "SecurityPolicy"
+    },
+    "Acme Enterprise Corp": {
+      "name": "Acme Enterprise Corp",
+      "company": "Acme Enterprise Corp",
+      "id": "Acme Enterprise Corp",
+      "_label": "Customer"
+    },
+    "INC-8834": {
+      "id": "INC-8834",
+      "title": "Authentication Failures During Flash Sale",
+      "priority": "P1",
+      "status": "Resolved",
+      "_label": "Incident"
+    },
+    "INC-9102": {
+      "id": "INC-9102",
+      "title": "Stripe webhook timeout on high concurrency",
+      "priority": "P2",
+      "status": "Investigating",
+      "_label": "Incident"
+    },
+    "postgres-main": {
+      "name": "postgres-main",
+      "id": "postgres-main",
+      "engine": "PostgreSQL 16",
+      "tier": "Tier-1",
+      "_label": "Database"
+    },
+    "qdrant-vector-cluster": {
+      "name": "qdrant-vector-cluster",
+      "id": "qdrant-vector-cluster",
+      "engine": "Qdrant Cloud",
+      "tier": "Tier-1",
+      "_label": "Database"
+    },
+    "neo4j-aura-cluster": {
+      "name": "neo4j-aura-cluster",
+      "id": "neo4j-aura-cluster",
+      "engine": "Neo4j AuraDB Enterprise",
+      "tier": "Tier-1",
+      "_label": "Database"
+    },
+    "redis-cache": {
+      "name": "redis-cache",
+      "id": "redis-cache",
+      "engine": "Redis 7.2",
+      "tier": "Tier-1",
+      "_label": "Database"
+    },
+    "acme-auth-service-repo": {
+      "name": "acme-auth-service-repo",
+      "id": "acme-auth-service-repo",
+      "url": "github.com/acme-ai/auth-service",
+      "branch": "main",
+      "_label": "Repository"
+    },
+    "acme-payments-repo": {
+      "name": "acme-payments-repo",
+      "id": "acme-payments-repo",
+      "url": "github.com/acme-ai/payments-service",
+      "branch": "main",
+      "_label": "Repository"
+    },
+    "acme-api-gateway-repo": {
+      "name": "acme-api-gateway-repo",
+      "id": "acme-api-gateway-repo",
+      "url": "github.com/acme-ai/api-gateway",
+      "branch": "main",
+      "_label": "Repository"
+    },
+    "acme-frontend-repo": {
+      "name": "acme-frontend-repo",
+      "id": "acme-frontend-repo",
+      "url": "github.com/acme-ai/ekip-frontend",
+      "branch": "main",
+      "_label": "Repository"
+    },
+    "aws-eks-us-east-1": {
+      "name": "aws-eks-us-east-1",
+      "id": "aws-eks-us-east-1",
+      "provider": "AWS EKS",
+      "region": "us-east-1",
+      "_label": "Infrastructure"
+    },
+    "k8s-platform-cluster": {
+      "name": "k8s-platform-cluster",
+      "id": "k8s-platform-cluster",
+      "provider": "Kubernetes",
+      "tier": "Production",
+      "_label": "Infrastructure"
+    },
+    "cloudflare-cdn": {
+      "name": "cloudflare-cdn",
+      "id": "cloudflare-cdn",
+      "provider": "Cloudflare Enterprise",
+      "type": "Edge Gateway",
+      "_label": "Infrastructure"
+    },
+    "doc_eng_001": {
+      "id": "doc_eng_001",
+      "title": "Auth Service Architecture & API Specification v3.2",
+      "type": "md",
+      "_label": "Document"
+    },
+    "doc_eng_002": {
+      "id": "doc_eng_002",
+      "title": "Payments & Billing Platform Implementation Guide",
+      "type": "md",
+      "_label": "Document"
+    },
+    "doc_sec_001": {
+      "id": "doc_sec_001",
+      "title": "Enterprise Zero-Trust Security & mTLS Standard",
+      "type": "md",
+      "_label": "Document"
+    },
+    "doc_sup_001": {
+      "id": "doc_sup_001",
+      "title": "Incident Review #INC-8834: Authentication Failures During Flash Sale",
+      "type": "md",
+      "_label": "Document"
+    },
+    "doc_api_gateway_001": {
+      "id": "doc_api_gateway_001",
+      "title": "API Gateway Service Architecture & Rate Limiting",
+      "type": "architecture",
+      "_label": "Document"
+    },
+    "doc_arch_overview_001": {
+      "id": "doc_arch_overview_001",
+      "title": "AcmeAI Canonical Platform Architecture v3.2",
+      "type": "architecture",
+      "_label": "Document"
+    },
+    "doc_auth_service_001": {
+      "id": "doc_auth_service_001",
+      "title": "Authentication & Authorization Service (auth-service) v2.3.1",
+      "type": "architecture",
+      "_label": "Document"
+    },
+    "doc_data_pipeline_001": {
+      "id": "doc_data_pipeline_001",
+      "title": "ETL Orchestration and Data Pipeline Service v2.5.0",
+      "type": "architecture",
+      "_label": "Document"
+    },
+    "doc_ml_inference_001": {
+      "id": "doc_ml_inference_001",
+      "title": "Model Serving and Inference Engine for AcmeAI Studio v3.1.0",
+      "type": "architecture",
+      "_label": "Document"
+    },
+    "doc_user_service_001": {
+      "id": "doc_user_service_001",
+      "title": "User Management Service for AcmeAI Platform v1.8.2",
+      "type": "architecture",
+      "_label": "Document"
+    }
+  },
+  "edges": [
+    {
+      "id": "edge_1",
+      "source": "James Liu",
+      "target": "Platform Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_2",
+      "source": "James Liu",
+      "target": "Platform Team",
+      "relationship": "MANAGES"
+    },
+    {
+      "id": "edge_3",
+      "source": "Aisha Johnson",
+      "target": "Backend Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_4",
+      "source": "Aisha Johnson",
+      "target": "Backend Team",
+      "relationship": "MANAGES"
+    },
+    {
+      "id": "edge_5",
+      "source": "Fatima Al-Rashidi",
+      "target": "Data Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_6",
+      "source": "Fatima Al-Rashidi",
+      "target": "Data Team",
+      "relationship": "MANAGES"
+    },
+    {
+      "id": "edge_7",
+      "source": "Dr. Wei Zhang",
+      "target": "ML/AI Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_8",
+      "source": "Dr. Wei Zhang",
+      "target": "ML/AI Team",
+      "relationship": "MANAGES"
+    },
+    {
+      "id": "edge_9",
+      "source": "Samantha Park",
+      "target": "Cloud Infrastructure & Security Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_10",
+      "source": "Samantha Park",
+      "target": "Cloud Infrastructure & Security Team",
+      "relationship": "MANAGES"
+    },
+    {
+      "id": "edge_11",
+      "source": "Nikolai Petrov",
+      "target": "Cloud Infrastructure & Security Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_12",
+      "source": "Elena Vance",
+      "target": "Identity & Access Management Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_13",
+      "source": "Marcus Chen",
+      "target": "Payments Engineering Team",
+      "relationship": "WORKS_IN"
+    },
+    {
+      "id": "edge_14",
+      "source": "Platform Team",
+      "target": "api-gateway",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_15",
+      "source": "Backend Team",
+      "target": "auth-svc",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_16",
+      "source": "Identity & Access Management Team",
+      "target": "auth-svc",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_17",
+      "source": "Backend Team",
+      "target": "user-svc",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_18",
+      "source": "ML/AI Team",
+      "target": "ml-inference-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_19",
+      "source": "Data Team",
+      "target": "data-pipeline-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_20",
+      "source": "Payments Engineering Team",
+      "target": "payments-svc",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_21",
+      "source": "Platform Team",
+      "target": "config-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_22",
+      "source": "Backend Team",
+      "target": "audit-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_23",
+      "source": "Backend Team",
+      "target": "notification-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_24",
+      "source": "Platform Team",
+      "target": "storage-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_25",
+      "source": "Data Team",
+      "target": "search-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_26",
+      "source": "Backend Team",
+      "target": "billing-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_27",
+      "source": "Data Team",
+      "target": "analytics-service",
+      "relationship": "OWNS"
+    },
+    {
+      "id": "edge_28",
+      "source": "api-gateway",
+      "target": "auth-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_29",
+      "source": "api-gateway",
+      "target": "config-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_30",
+      "source": "api-gateway",
+      "target": "analytics-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_31",
+      "source": "api-gateway",
+      "target": "audit-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_32",
+      "source": "auth-service",
+      "target": "user-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_33",
+      "source": "auth-service",
+      "target": "audit-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_34",
+      "source": "auth-service",
+      "target": "notification-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_35",
+      "source": "auth-service",
+      "target": "config-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_36",
+      "source": "user-service",
+      "target": "auth-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_37",
+      "source": "user-service",
+      "target": "search-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_38",
+      "source": "user-service",
+      "target": "notification-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_39",
+      "source": "user-service",
+      "target": "audit-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_40",
+      "source": "ml-inference-service",
+      "target": "storage-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_41",
+      "source": "ml-inference-service",
+      "target": "config-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_42",
+      "source": "data-pipeline-service",
+      "target": "storage-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_43",
+      "source": "data-pipeline-service",
+      "target": "billing-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_44",
+      "source": "data-pipeline-service",
+      "target": "analytics-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_45",
+      "source": "data-pipeline-service",
+      "target": "search-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_46",
+      "source": "data-pipeline-service",
+      "target": "audit-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_47",
+      "source": "Payments Service",
+      "target": "auth-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_48",
+      "source": "Payments Service",
+      "target": "billing-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_49",
+      "source": "billing-service",
+      "target": "notification-service",
+      "relationship": "DEPENDS_ON"
+    },
+    {
+      "id": "edge_50",
+      "source": "auth-service",
+      "target": "POST /v2/auth/login",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_51",
+      "source": "auth-service",
+      "target": "POST /v2/auth/oauth/token",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_52",
+      "source": "auth-service",
+      "target": "GET /v2/auth/me",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_53",
+      "source": "user-service",
+      "target": "GET /v1/users/search",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_54",
+      "source": "user-service",
+      "target": "POST /v1/organizations",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_55",
+      "source": "ml-inference-service",
+      "target": "POST /v1/predict",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_56",
+      "source": "ml-inference-service",
+      "target": "POST /v1/predict/batch",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_57",
+      "source": "Payments Service",
+      "target": "POST /api/v1/payments/charge",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_58",
+      "source": "api-gateway",
+      "target": "ALL /v1/*",
+      "relationship": "EXPOSES"
+    },
+    {
+      "id": "edge_59",
+      "source": "auth-service",
+      "target": "auth-service-prod-deploy",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_60",
+      "source": "auth-service",
+      "target": "auth-service-prod-deploy",
+      "relationship": "DEPLOYED_VIA"
+    },
+    {
+      "id": "edge_61",
+      "source": "user-service",
+      "target": "user-service-prod-deploy",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_62",
+      "source": "user-service",
+      "target": "user-service-prod-deploy",
+      "relationship": "DEPLOYED_VIA"
+    },
+    {
+      "id": "edge_63",
+      "source": "ml-inference-service",
+      "target": "ml-inference-prod-gpu",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_64",
+      "source": "ml-inference-service",
+      "target": "ml-inference-prod-gpu",
+      "relationship": "DEPLOYED_VIA"
+    },
+    {
+      "id": "edge_65",
+      "source": "api-gateway",
+      "target": "api-gateway-envoy-v4",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_66",
+      "source": "api-gateway",
+      "target": "api-gateway-envoy-v4",
+      "relationship": "DEPLOYED_VIA"
+    },
+    {
+      "id": "edge_67",
+      "source": "Payments Service",
+      "target": "Stripe Ledger Pipeline",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_68",
+      "source": "Payments Service",
+      "target": "Stripe Ledger Pipeline",
+      "relationship": "DEPLOYED_VIA"
+    },
+    {
+      "id": "edge_69",
+      "source": "Cloud Infrastructure & Security Team",
+      "target": "POL-ZT-001",
+      "relationship": "MAINTAINS"
+    },
+    {
+      "id": "edge_70",
+      "source": "auth-service",
+      "target": "POL-ZT-001",
+      "relationship": "COMPLIES_WITH"
+    },
+    {
+      "id": "edge_71",
+      "source": "Payments Service",
+      "target": "POL-ZT-001",
+      "relationship": "COMPLIES_WITH"
+    },
+    {
+      "id": "edge_72",
+      "source": "api-gateway",
+      "target": "POL-ZT-001",
+      "relationship": "COMPLIES_WITH"
+    },
+    {
+      "id": "edge_73",
+      "source": "INC-8834",
+      "target": "auth-service",
+      "relationship": "RELATES_TO"
+    },
+    {
+      "id": "edge_74",
+      "source": "Acme Enterprise Corp",
+      "target": "INC-8834",
+      "relationship": "FILED_BY"
+    },
+    {
+      "id": "edge_75",
+      "source": "INC-9102",
+      "target": "Payments Service",
+      "relationship": "RELATES_TO"
+    },
+    {
+      "id": "edge_76",
+      "source": "Acme Enterprise Corp",
+      "target": "INC-9102",
+      "relationship": "FILED_BY"
+    },
+    {
+      "id": "edge_77",
+      "source": "auth-service",
+      "target": "redis-cache",
+      "relationship": "USES"
+    },
+    {
+      "id": "edge_78",
+      "source": "user-service",
+      "target": "postgres-main",
+      "relationship": "USES"
+    },
+    {
+      "id": "edge_79",
+      "source": "user-service",
+      "target": "redis-cache",
+      "relationship": "USES"
+    },
+    {
+      "id": "edge_80",
+      "source": "data-pipeline-service",
+      "target": "postgres-main",
+      "relationship": "USES"
+    },
+    {
+      "id": "edge_81",
+      "source": "search-service",
+      "target": "qdrant-vector-cluster",
+      "relationship": "USES"
+    },
+    {
+      "id": "edge_82",
+      "source": "search-service",
+      "target": "neo4j-aura-cluster",
+      "relationship": "USES"
+    },
+    {
+      "id": "edge_83",
+      "source": "Payments Service",
+      "target": "postgres-main",
+      "relationship": "USES"
+    },
+    {
+      "id": "edge_84",
+      "source": "auth-service",
+      "target": "acme-auth-service-repo",
+      "relationship": "PART_OF"
+    },
+    {
+      "id": "edge_85",
+      "source": "Payments Service",
+      "target": "acme-payments-repo",
+      "relationship": "PART_OF"
+    },
+    {
+      "id": "edge_86",
+      "source": "api-gateway",
+      "target": "acme-api-gateway-repo",
+      "relationship": "PART_OF"
+    },
+    {
+      "id": "edge_87",
+      "source": "api-gateway",
+      "target": "cloudflare-cdn",
+      "relationship": "CONNECTS_TO"
+    },
+    {
+      "id": "edge_88",
+      "source": "auth-service",
+      "target": "aws-eks-us-east-1",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_89",
+      "source": "Payments Service",
+      "target": "aws-eks-us-east-1",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_90",
+      "source": "data-pipeline-service",
+      "target": "k8s-platform-cluster",
+      "relationship": "DEPLOYED_AS"
+    },
+    {
+      "id": "edge_91",
+      "source": "James Liu",
+      "target": "api-gateway",
+      "relationship": "OWNED_BY"
+    },
+    {
+      "id": "edge_92",
+      "source": "Aisha Johnson",
+      "target": "auth-service",
+      "relationship": "OWNED_BY"
+    },
+    {
+      "id": "edge_93",
+      "source": "Samantha Park",
+      "target": "POL-ZT-001",
+      "relationship": "OWNED_BY"
+    },
+    {
+      "id": "edge_94",
+      "source": "doc_api_gateway_001",
+      "target": "api-gateway",
+      "relationship": "DOCUMENTS"
+    },
+    {
+      "id": "edge_95",
+      "source": "doc_api_gateway_001",
+      "target": "api-gateway",
+      "relationship": "RELATES_TO"
+    },
+    {
+      "id": "edge_96",
+      "source": "doc_arch_overview_001",
+      "target": "api-gateway",
+      "relationship": "DOCUMENTS"
+    },
+    {
+      "id": "edge_97",
+      "source": "doc_arch_overview_001",
+      "target": "api-gateway",
+      "relationship": "RELATES_TO"
+    },
+    {
+      "id": "edge_98",
+      "source": "doc_auth_service_001",
+      "target": "auth-svc",
+      "relationship": "DOCUMENTS"
+    },
+    {
+      "id": "edge_99",
+      "source": "doc_auth_service_001",
+      "target": "auth-svc",
+      "relationship": "RELATES_TO"
+    },
+    {
+      "id": "edge_100",
+      "source": "doc_data_pipeline_001",
+      "target": "data-pipeline-service",
+      "relationship": "DOCUMENTS"
+    },
+    {
+      "id": "edge_101",
+      "source": "doc_data_pipeline_001",
+      "target": "data-pipeline-service",
+      "relationship": "RELATES_TO"
+    },
+    {
+      "id": "edge_102",
+      "source": "doc_ml_inference_001",
+      "target": "ml-inference-service",
+      "relationship": "DOCUMENTS"
+    },
+    {
+      "id": "edge_103",
+      "source": "doc_ml_inference_001",
+      "target": "ml-inference-service",
+      "relationship": "RELATES_TO"
+    },
+    {
+      "id": "edge_104",
+      "source": "doc_user_service_001",
+      "target": "user-svc",
+      "relationship": "DOCUMENTS"
+    },
+    {
+      "id": "edge_105",
+      "source": "doc_user_service_001",
+      "target": "user-svc",
+      "relationship": "RELATES_TO"
+    }
+  ]
+}

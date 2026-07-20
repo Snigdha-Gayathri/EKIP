@@ -1,0 +1,57 @@
+version: "3.9"
+
+services:
+  # ============== BACKEND ==============
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: ekip-backend
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - backend_uploads:/app/uploads
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/admin/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    networks:
+      - ekip-network
+    restart: unless-stopped
+
+  # ============== FRONTEND ==============
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ekip-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host
+    depends_on:
+      - backend
+    networks:
+      - ekip-network
+    restart: unless-stopped
+
+  # NOTE: Supabase, Qdrant Cloud, and Neo4j Aura are managed cloud services.
+  # Connection details are provided via environment variables in .env
+
+# ============== VOLUMES ==============
+volumes:
+  backend_uploads:
+    driver: local
+
+# ============== NETWORKS ==============
+networks:
+  ekip-network:
+    driver: bridge
