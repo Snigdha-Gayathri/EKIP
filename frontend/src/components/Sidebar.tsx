@@ -1,8 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { BrainCircuit, Network, FileText, Activity, ShieldCheck, Sparkles, Layers, Zap } from 'lucide-react';
+import { BrainCircuit, Network, FileText, Activity, ShieldCheck, Sparkles, Layers, Zap, Settings, LogOut } from 'lucide-react';
 
-export const Sidebar: React.FC = () => {
+interface SidebarProps {
+  onOpenSettings?: () => void;
+  onDisconnect?: () => void;
+}
+
+export const Sidebar: React.FC<SidebarProps> = ({ onOpenSettings, onDisconnect }) => {
   const navItems = [
     { name: 'Intelligence Query', path: '/', icon: BrainCircuit },
     { name: 'Knowledge Graph', path: '/graph', icon: Network },
@@ -51,6 +56,28 @@ export const Sidebar: React.FC = () => {
           );
         })}
       </nav>
+
+      {/* Settings & Disconnect */}
+      <div className="px-4 pb-2 space-y-1">
+        {onOpenSettings && (
+          <button
+            onClick={onOpenSettings}
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm text-slate-400 hover:text-slate-200 hover:bg-slate-900/60 transition-all duration-200"
+          >
+            <Settings className="w-4 h-4 text-slate-500 shrink-0" />
+            <span>API Key Settings</span>
+          </button>
+        )}
+        {onDisconnect && (
+          <button
+            onClick={onDisconnect}
+            className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl font-medium text-sm text-rose-400/70 hover:text-rose-300 hover:bg-rose-500/10 transition-all duration-200"
+          >
+            <LogOut className="w-4 h-4 shrink-0" />
+            <span>Disconnect</span>
+          </button>
+        )}
+      </div>
 
       {/* System Status Footer */}
       <div className="p-4 m-4 rounded-xl bg-slate-900/60 border border-slate-800/80">

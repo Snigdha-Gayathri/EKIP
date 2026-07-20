@@ -13,6 +13,7 @@ from app.db.qdrant import init_qdrant_collections
 from app.db.neo4j import close_neo4j_driver
 from app.middleware.cors import setup_cors_middleware
 from app.middleware.logging import RequestLoggingMiddleware
+from app.middleware.api_keys import APIKeysMiddleware
 
 
 @asynccontextmanager
@@ -37,6 +38,7 @@ app = FastAPI(
 )
 
 setup_cors_middleware(app)
+app.add_middleware(APIKeysMiddleware)
 app.add_middleware(RequestLoggingMiddleware)
 
 app.include_router(api_router, prefix="/api/v1")
