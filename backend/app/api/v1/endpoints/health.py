@@ -9,6 +9,7 @@ router = APIRouter(tags=["Health"])
 
 
 @router.get("/health")
+@router.get("/admin/health")
 async def health_check():
     """Verify backend and database connections."""
     return await admin_service.get_health()

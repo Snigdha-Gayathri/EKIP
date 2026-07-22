@@ -42,6 +42,8 @@ app.add_middleware(RequestLoggingMiddleware)
 setup_cors_middleware(app)
 
 app.include_router(api_router, prefix="/api/v1")
+app.include_router(api_router, prefix="/api")
+app.include_router(api_router, prefix="")
 
 
 @app.get("/")

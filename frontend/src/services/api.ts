@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api/v1';
+const rawBaseUrl = import.meta.env.VITE_API_URL || '/api/v1';
+const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '');
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -30,6 +31,12 @@ apiClient.interceptors.response.use(
   (error) => {
     if (!error.response || error.message === 'Network Error') {
       error.message = 'Unable to connect to the EKIP backend server (Network Error / CORS). Please ensure the backend service is running on port 8000.';
+    } else if (error.response.status === 404) {
+      const msg = 'Backend API endpoint not found (404). Please ensure the backend service is running on port 8000 and is up to date.';
+      error.message = msg;
+      if (error.response.data && typeof error.response.data === 'object') {
+        error.response.data.detail = msg;
+      }
     }
     return Promise.reject(error);
   }
