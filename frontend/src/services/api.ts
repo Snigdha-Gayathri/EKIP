@@ -24,3 +24,13 @@ apiClient.interceptors.request.use((config) => {
 
   return config;
 });
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (!error.response || error.message === 'Network Error') {
+      error.message = 'Unable to connect to the EKIP backend server (Network Error / CORS). Please ensure the backend service is running on port 8000.';
+    }
+    return Promise.reject(error);
+  }
+);

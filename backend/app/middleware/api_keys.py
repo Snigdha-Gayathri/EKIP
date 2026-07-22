@@ -31,28 +31,26 @@ class APIKeysMiddleware(BaseHTTPMiddleware):
 
     async def dispatch(self, request: Request, call_next) -> Response:
         header_value = request.headers.get("X-API-Keys")
-        if header_value:
+        if header_value and request.method != "OPTIONS":
             try:
                 keys: dict = json.loads(header_value)
-            except (json.JSONDecodeError, TypeError):
-                logger.warning("Invalid JSON in X-API-Keys header — ignoring")
-                return await call_next(request)
+                # Apply overrides to the global settings object.
+                for json_key, settings_attr in _KEY_MAP.items():
+                    value = keys.get(json_key)
+                    if value is not None:
+                        setattr(settings, settings_attr, value)
 
-            # Apply overrides to the global settings object.
-            for json_key, settings_attr in _KEY_MAP.items():
-                value = keys.get(json_key)
-                if value is not None:
-                    setattr(settings, settings_attr, value)
+                # Reset cached singletons so they reinitialize with the new keys.
+                import app.db.qdrant as _qdrant_mod
+                import app.db.neo4j as _neo4j_mod
+                import app.db.supabase as _supabase_mod
+                import app.llm.embeddings as _embeddings_mod
 
-            # Reset cached singletons so they reinitialize with the new keys.
-            import app.db.qdrant as _qdrant_mod
-            import app.db.neo4j as _neo4j_mod
-            import app.db.supabase as _supabase_mod
-            import app.llm.embeddings as _embeddings_mod
-
-            _qdrant_mod._qdrant_client = None
-            _neo4j_mod._neo4j_driver = None
-            _supabase_mod._supabase_client = None
-            _embeddings_mod._embedding_service = None
+                _qdrant_mod._qdrant_client = None
+                _neo4j_mod._neo4j_driver = None
+                _supabase_mod._supabase_client = None
+                _embeddings_mod._embedding_service = None
+            except Exception as exc:
+                logger.warning("Error applying X-API-Keys overrides: %s — ignoring", exc)
 
         return await call_next(request)

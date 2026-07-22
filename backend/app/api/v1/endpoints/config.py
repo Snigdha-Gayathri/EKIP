@@ -106,15 +106,20 @@ async def _validate_qdrant(url: str, api_key: str) -> ServiceValidationResult:
     try:
         from qdrant_client import AsyncQdrantClient
 
-        kwargs: dict[str, Any] = {"url": url, "timeout": 3.0}
-        if api_key:
-            kwargs["api_key"] = api_key
-        client = AsyncQdrantClient(**kwargs)
-        try:
-            await client.get_collections()
-            return ServiceValidationResult(connected=True, message="Connected successfully")
-        finally:
-            await client.close()
+        if url.startswith("http://") or url.startswith("https://"):
+            kwargs: dict[str, Any] = {"url": url, "timeout": 3.0}
+            if api_key:
+                kwargs["api_key"] = api_key
+            client = AsyncQdrantClient(**kwargs)
+            try:
+                await client.get_collections()
+                return ServiceValidationResult(connected=True, message="Connected successfully")
+            finally:
+                await client.close()
+        else:
+            from app.db.qdrant import get_qdrant_client_sync
+            get_qdrant_client_sync().get_collections()
+            return ServiceValidationResult(connected=True, message="Connected successfully (Local persistent engine)")
     except Exception as exc:
         logger.warning("Qdrant validation failed: %s", exc)
         return ServiceValidationResult(connected=False, message=str(exc))
@@ -167,10 +172,13 @@ async def _run_with_timeout(name: str, coro) -> ServiceValidationResult:
     """Run a single validation coroutine with a strict timeout."""
     try:
         return await asyncio.wait_for(coro, timeout=3.5)
-    except asyncio.TimeoutError:
+    except (asyncio.TimeoutError, TimeoutError):
         logger.warning("%s validation timed out (3.5s)", name)
         return ServiceValidationResult(connected=False, message="Connection timed out (3.5s)")
-    except Exception as exc:
+    except asyncio.CancelledError:
+        logger.warning("%s validation cancelled or timed out", name)
+        return ServiceValidationResult(connected=False, message="Connection timed out or cancelled")
+    except BaseException as exc:
         logger.warning("%s validation failed: %s", name, exc)
         return ServiceValidationResult(connected=False, message=str(exc))
 

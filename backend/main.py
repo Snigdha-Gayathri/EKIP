@@ -37,9 +37,9 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-setup_cors_middleware(app)
 app.add_middleware(APIKeysMiddleware)
 app.add_middleware(RequestLoggingMiddleware)
+setup_cors_middleware(app)
 
 app.include_router(api_router, prefix="/api/v1")
 
