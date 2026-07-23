@@ -48,8 +48,8 @@ Thumbs.db
 .gitignore
 
 # Documentation
-*.md
 docs/
+# Note: README.md is needed for pyproject.toml package metadata
 
 # Environment files (should be set via Render dashboard)
 .env
