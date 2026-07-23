@@ -16,7 +16,14 @@ class Settings(BaseSettings):
     APP_DEBUG: bool = True
     APP_LOG_LEVEL: str = "INFO"
     APP_SECRET_KEY: str = "ekip-super-secret-key-change-in-production"
-    CORS_ORIGINS: list[str] = ["http://localhost:5173", "http://localhost:3000"]
+    CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000"
+    
+    @property
+    def cors_origins_list(self) -> list[str]:
+        """Parse CORS_ORIGINS string into a list."""
+        if self.CORS_ORIGINS == "*":
+            return ["*"]
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
 
     # Supabase
     SUPABASE_URL: str = "https://example.supabase.co"

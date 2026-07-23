@@ -1,0 +1,73 @@
+services:
+  # Backend API Service
+  - type: web
+    name: ekip-backend
+    env: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    region: oregon
+    plan: free
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: APP_NAME
+        value: EKIP
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_LOG_LEVEL
+        value: INFO
+      - key: CORS_ORIGINS
+        value: "*"
+      - key: DEFAULT_LLM_PROVIDER
+        value: gemini
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash
+      - key: GEMINI_EMBEDDING_MODEL
+        value: text-embedding-004
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: QDRANT_COLLECTION_DOCUMENTS
+        value: ekip_documents
+      - key: QDRANT_COLLECTION_MEMORY
+        value: ekip_memory
+      - key: NEO4J_DATABASE
+        value: neo4j
+      - key: NEO4J_USERNAME
+        value: neo4j
+      - key: MAX_UPLOAD_SIZE_MB
+        value: 50
+      - key: RATE_LIMIT_QUERIES_PER_MINUTE
+        value: 30
+      - key: RATE_LIMIT_UPLOADS_PER_HOUR
+        value: 50
+      # Add these secrets in Render dashboard (Environment > Secret Files or Environment Variables):
+      # - GEMINI_API_KEY (required)
+      # - GROQ_API_KEY (required)
+      # - QDRANT_URL (required)
+      # - QDRANT_API_KEY (required if using Qdrant Cloud)
+      # - NEO4J_URI (required)
+      # - NEO4J_PASSWORD (required)
+      # - SUPABASE_URL (required)
+      # - SUPABASE_ANON_KEY (required)
+      # - SUPABASE_SERVICE_ROLE_KEY (required)
+      # - SUPABASE_JWT_SECRET (required)
+      # - APP_SECRET_KEY (recommended for production)
+
+  # Frontend Service
+  - type: web
+    name: ekip-frontend
+    env: static
+    buildCommand: cd frontend && npm ci && npm run build
+    staticPublishPath: ./frontend/dist
+    region: oregon
+    plan: free
+    envVars:
+      - key: VITE_API_URL
+        sync: false
+        # Set this to your backend URL after deployment, e.g.:
+        # value: https://ekip-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

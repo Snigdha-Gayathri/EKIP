@@ -196,7 +196,9 @@ ekip/
 | Gemini | API key |
 | Groq | API key |
 
-### 1. Clone & Configure
+### Local Development
+
+#### 1. Clone & Configure
 
 ```bash
 git clone https://github.com/Snigdha-Gayathri/EKIP.git
@@ -206,7 +208,7 @@ cd EKIP
 cp .env.example .env
 ```
 
-### 2. Backend Setup
+#### 2. Backend Setup
 
 ```bash
 cd backend
@@ -216,7 +218,7 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 The API server will be available at `http://localhost:8000` with interactive docs at `/docs`.
 
-### 3. Frontend Setup
+#### 3. Frontend Setup
 
 ```bash
 cd frontend
@@ -226,7 +228,7 @@ npm run dev
 
 The dashboard will be available at `http://localhost:5173`.
 
-### 4. Seed Demo Data
+#### 4. Seed Demo Data
 
 ```bash
 cd backend
@@ -242,6 +244,18 @@ docker-compose up --build
 ```
 
 This starts both backend (`port 8000`) and frontend (`port 5173`) with hot-reload enabled.
+
+### Deployment to Render
+
+For production deployment on Render, see the comprehensive [**Deployment Guide**](DEPLOYMENT.md).
+
+Quick deployment steps:
+1. Push your code to GitHub
+2. Connect your repository to Render
+3. Configure environment variables in Render dashboard
+4. Deploy using the included `render.yaml` configuration
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed instructions, environment variable setup, and troubleshooting.
 
 ---
 
